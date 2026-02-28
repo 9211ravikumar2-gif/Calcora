@@ -244,14 +244,6 @@ class Calculator {
             }
         });
 
-        // Theme Panel
-        document.getElementById('theme-panel-toggle')?.addEventListener('click', () => {
-            document.getElementById('theme-panel')?.classList.add('open');
-        });
-        document.getElementById('close-theme-panel')?.addEventListener('click', () => {
-            document.getElementById('theme-panel')?.classList.remove('open');
-        });
-
         // Copy/Share
         document.getElementById('copy-btn')?.addEventListener('click', () => {
             navigator.clipboard.writeText(this.currentInput);
@@ -297,7 +289,14 @@ class Calculator {
         });
 
         document.getElementById('history-toggle')?.addEventListener('click', () => {
-            document.getElementById('history-panel')?.classList.add('open');
+            const panel = document.getElementById('history-panel');
+            panel?.classList.toggle('open');
+        });
+
+        document.getElementById('history-panel')?.addEventListener('click', (e) => {
+            if (e.target === e.currentTarget) {
+                (e.currentTarget as HTMLElement).classList.remove('open');
+            }
         });
 
         document.getElementById('close-history')?.addEventListener('click', () => {
@@ -313,7 +312,7 @@ class Calculator {
 
     switchMode(mode: string) {
         this.currentMode = mode;
-        const containers = ['buttons-grid', 'scientific-grid', 'currency-container', 'unit-container', 'graph-container'];
+        const containers = ['buttons-grid', 'scientific-grid', 'currency-container', 'unit-container', 'graph-container', 'theme-container'];
         containers.forEach(c => document.querySelector(`.${c}`)?.classList.add('hidden'));
         
         if (mode === 'calc') {
@@ -326,6 +325,8 @@ class Calculator {
         } else if (mode === 'graph') {
             document.getElementById('graph-container')?.classList.remove('hidden');
             this.plotGraph();
+        } else if (mode === 'theme') {
+            document.getElementById('theme-container')?.classList.remove('hidden');
         }
     }
 

@@ -4,11 +4,9 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Advanced Glassmorphic Calculator</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="/src/style.css">
     <!-- Lucide Icons -->
     <script src="https://unpkg.com/lucide@latest"></script>
-    <!-- D3.js for Graphing -->
-    <script src="https://d3js.org/d3.v7.min.js"></script>
   </head>
   <body>
     <div class="bg-blobs">
@@ -21,9 +19,6 @@
       <!-- Header -->
       <header class="header">
         <div class="controls">
-          <button class="control-btn" id="theme-panel-toggle" title="Customize Theme">
-            <i data-lucide="palette"></i>
-          </button>
           <button class="control-btn" id="theme-toggle" title="Toggle Dark/Light">
             <i data-lucide="sun"></i>
           </button>
@@ -66,6 +61,7 @@
             <button class="mode-opt" data-mode="graph"><i data-lucide="line-chart"></i> Graph Preview</button>
             <button class="mode-opt" data-mode="currency"><i data-lucide="banknote"></i> Currency</button>
             <button class="mode-opt" data-mode="unit"><i data-lucide="ruler"></i> Unit Converter</button>
+            <button class="mode-opt" data-mode="theme"><i data-lucide="palette"></i> Themes</button>
           </div>
         </div>
       </div>
@@ -124,12 +120,8 @@
         </div>
       </section>
 
-      <!-- Theme Customization Panel -->
-      <aside class="side-panel" id="theme-panel">
-        <div class="panel-header">
-          <h3>Customize Theme</h3>
-          <button class="control-btn" id="close-theme-panel"><i data-lucide="x"></i></button>
-        </div>
+      <!-- Theme Customization Section -->
+      <section class="theme-container hidden" id="theme-container">
         <div class="theme-options">
           <div class="theme-group">
             <label>Accent Color</label>
@@ -151,7 +143,7 @@
             <input type="range" id="opacity-range" min="5" max="95" value="10">
           </div>
         </div>
-      </aside>
+      </section>
 
       <!-- Scientific Buttons (Hidden by default) -->
       <section class="scientific-grid">
@@ -223,13 +215,11 @@
       </aside>
     </main>
 
-    <script src="script.js" defer></script>
+    <script type="module" src="/src/script.ts"></script>
     <script>
-      // Global error handling
-      window.onerror = function(msg, url, line) {
-        console.error("Calculator Error: " + msg + " at " + line);
-        return false;
-      };
+      // Initialize Lucide icons
+      lucide.createIcons();
     </script>
   </body>
 </html>
+

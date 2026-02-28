@@ -239,6 +239,7 @@ class Calculator {
         });
 
         document.getElementById('theme-panel-toggle').addEventListener('click', () => {
+            document.getElementById('history-panel').classList.remove('open');
             document.getElementById('theme-panel').classList.add('open');
         });
         document.getElementById('close-theme-panel').addEventListener('click', () => {
@@ -287,6 +288,7 @@ class Calculator {
         });
 
         document.getElementById('history-toggle').addEventListener('click', () => {
+            document.getElementById('theme-panel').classList.remove('open');
             document.getElementById('history-panel').classList.add('open');
         });
 
